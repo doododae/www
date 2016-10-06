@@ -1,12 +1,4 @@
 var app = angular.module('Compounds', []);
-var app2 = angular.module('Safety', []);
-
-app2.controller('safetyCtrl', function($location, $scope, $http){
-	$http.get("../products/compounds.php")
-	.then(function (response) {
-		$scope.safety_sheets = response.data.records;
-	});
-}) 
 
 app.config(['$locationProvider', function($locationProvider){
   $locationProvider.html5Mode(true);   
@@ -17,6 +9,7 @@ app.controller('compoundCtrl', function($location, $scope, $http){
 	.then(function (response) {
 		$scope.compounds = response.data.records;
 	});
+
 	$scope.options = [{
 		value: '1',
 		label: '100 ug'
@@ -27,23 +20,30 @@ app.controller('compoundCtrl', function($location, $scope, $http){
 		value: '10',
 		label: '1 mg'
 	}];
+
 	var search = $location.search();
 	switch(search.filter) {
 		case "pNP":
 		case "Az":
 			$scope.familyFilter = search.filter;
+			$scope.seriesFilter = search.series;
 			break;
 		default:
 			$scope.familyFilter = '';
-	}	
+	}
+
 	$scope.filterBy = function(x) {
 		$scope.nameFilter = x; 
 	}
 	$scope.filterFamily = function(x) {
-		$scope.familyFilter = x;
+		$location.search({filter: x, series: ''});
+		$scope.familyFilter = $location.search().filter;
+		$scope.seriesFilter = $location.search().series;
+		
 	}
 	$scope.filterSeries = function(x) {
-		$scope.seriesFilter = x;
+		$location.search({filter: $scope.familyFilter, series: x});
+		$scope.seriesFilter = $location.search().series;
 	}
 	$scope.availablity = function(x) {
 		if(x === '#')

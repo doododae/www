@@ -79,14 +79,14 @@
 				<div class="col-sm-3">
 					<ul id="Products" class="nav nav-pills nav-stacked nav-collapsible">
 						<li><input type="text" placeholder="  Search" ng-model="nameFilter"></li>
-						<li><a data-toggle="collapse" data-parent="#accordion" class="collapsed" ng-click="filterFamily('Az'); filterSeries('')" href="#az-family" data-parent="#Products">Azido Family</a></li>
+						<li><a data-toggle="collapse" class="collapsed" ng-click="filterFamily('Az')" data-target="az-family" data-parent="#Products">Azido Family</a></li>
 						<ul id="az-family" class="collapse nav-in-nav"> 
 							<li class="family-item" ng-class="{'NS-NA-nav':seriesFilter==='NS-NA'}"><a ng-class="{'white-text':seriesFilter==='NS-NA'}" ng-click="filterSeries('NS-NA')">NS-NA Series</a></li>
 							<li class="family-item" ng-class="{'SS-nav':seriesFilter==='SS'}"><a ng-class="{'white-text':seriesFilter==='SS'}" ng-click="filterSeries('SS')">6S Series</a></li>
 							<li class="family-item" ng-class="{'TS-nav':seriesFilter==='TS'}"><a ng-class="{'white-text':seriesFilter==='TS'}" ng-click="filterSeries('TS')">2S Series</a></li>
 							<li class="family-item" ng-class="{'TS-SS-nav':seriesFilter==='TS-SS'}"><a ng-class="{'white-text':seriesFilter==='TS-SS'}" ng-click="filterSeries('TS-SS')">2S-6S Series</a></li>
 						</ul>
-						<li><a data-toggle="collapse" data-parent="#accordion" class="collapsed" ng-click="filterFamily('pNP'); filterSeries('')" href="#pnp-family" data-parent="#Products">pNP Family</a></li>
+						<li><a data-toggle="collapse" data-parent="#accordion" class="collapsed" ng-click="filterFamily('pNP')" href="#pnp-family" data-parent="#Products">pNP Family</a></li>
 						<ul id="pnp-family" class="collapse nav-in-nav"> 
 							<li class="family-item" ng-class="{'NA-nav':seriesFilter==='NA'}"><a ng-class="{'white-text':seriesFilter==='NA'}" ng-click="filterSeries('NA')">NA Series</a></li>
 							<li class="family-item" ng-class="{'NS-nav':seriesFilter==='NS'}"><a ng-class="{'white-text':seriesFilter==='NS'}" ng-click="filterSeries('NS')">NS Series</a></li>
@@ -119,7 +119,7 @@
 							<a href="{{x.Link_C}}" class="available" ng-hide="!availablity(x.Link_C)">Polysciences <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
 						</div>
 						<div class="col-sm-12">
-							<a href="#{{x.ID}}" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="{{x.ID}}" class="collapsed"><p class="chemical-description">{{x.Structure}}</p></a>
+							<a ng-href="#{{x.ID}}" data-toggle="collapse" aria-expanded="false" aria-controls="{{x.ID}}" class="collapsed"><p class="chemical-description">{{x.Structure}}</p></a>
 							<div id="{{x.ID}}" class="panel-collapse collapse" role="tabpanel"><img src="{{x.Picture}}"></div>
 							<div style = "text-align:center;">
 							<svg width="100%" height="2">
